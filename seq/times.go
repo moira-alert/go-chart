@@ -3,7 +3,7 @@ package seq
 import (
 	"time"
 
-	"github.com/wcharczuk/go-chart/util"
+	"github.com/beevee/go-chart/util"
 )
 
 // Assert types implement interfaces.

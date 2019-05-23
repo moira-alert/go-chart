@@ -3,7 +3,7 @@ package chart
 import (
 	"fmt"
 
-	util "github.com/wcharczuk/go-chart/util"
+	util "github.com/beevee/go-chart/util"
 )
 
 const (

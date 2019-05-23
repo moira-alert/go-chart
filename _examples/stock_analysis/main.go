@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/wcharczuk/go-chart"
-	"github.com/wcharczuk/go-chart/drawing"
+	"github.com/beevee/go-chart"
+	"github.com/beevee/go-chart/drawing"
 )
 
 func drawChart(res http.ResponseWriter, req *http.Request) {

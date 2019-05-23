@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"io"
 	"github.com/golang/freetype/truetype"
-	"github.com/wcharczuk/go-chart/util"
+	"github.com/beevee/go-chart/util"
 )
 
 // DonutChart is a chart that draws sections of a circle based on percentages with an hole.

@@ -5,8 +5,8 @@ import (
 	"strings"
 
 	"github.com/golang/freetype/truetype"
-	"github.com/wcharczuk/go-chart/drawing"
-	"github.com/wcharczuk/go-chart/util"
+	"github.com/beevee/go-chart/drawing"
+	"github.com/beevee/go-chart/util"
 )
 
 const (
