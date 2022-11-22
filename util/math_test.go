@@ -152,5 +152,5 @@ func TestRotateCoordinate45(t *testing.T) {
 
 func TestSqrFloat(t *testing.T) {
 	assert := assert.New(t)
-	assert.Equal(4, Math.SqrFloat(2))
+	assert.True(math.Abs(4 - Math.SqrFloat(2)) < 1e-9)
 }
