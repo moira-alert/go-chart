@@ -10,8 +10,8 @@ import (
 	"golang.org/x/image/font"
 
 	"github.com/golang/freetype/truetype"
-	"github.com/beevee/go-chart/drawing"
-	"github.com/beevee/go-chart/util"
+	"github.com/moira-alert/go-chart/drawing"
+	"github.com/moira-alert/go-chart/util"
 )
 
 // SVG returns a new png/raster renderer.
@@ -30,7 +30,7 @@ func SVG(width, height int) (Renderer, error) {
 
 // SVGWithCSS returns a new png/raster renderer with attached custom CSS
 // The optional nonce argument sets a CSP nonce.
-func SVGWithCSS(css string, nonce string) (func(width, height int)(Renderer, error)) {
+func SVGWithCSS(css string, nonce string) func(width, height int) (Renderer, error) {
 	return func(width, height int) (Renderer, error) {
 		buffer := bytes.NewBuffer([]byte{})
 		canvas := newCanvas(buffer)

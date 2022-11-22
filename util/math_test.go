@@ -149,3 +149,8 @@ func TestRotateCoordinate45(t *testing.T) {
 	assert.Equal(7, rx)
 	assert.Equal(7, ry)
 }
+
+func TestSqrFloat(t *testing.T) {
+	assert := assert.New(t)
+	assert.Equal(4, Math.SqrFloat(2))
+}

@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/blend/go-sdk/assert"
-	"github.com/beevee/go-chart/util"
+	"github.com/moira-alert/go-chart/util"
 )
 
 func TestTimeValueFormatterWithFormat(t *testing.T) {

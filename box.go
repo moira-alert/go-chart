@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math"
 
-	util "github.com/beevee/go-chart/util"
+	util "github.com/moira-alert/go-chart/util"
 )
 
 var (

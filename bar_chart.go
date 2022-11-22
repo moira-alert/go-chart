@@ -7,7 +7,7 @@ import (
 	"math"
 
 	"github.com/golang/freetype/truetype"
-	util "github.com/beevee/go-chart/util"
+	"github.com/moira-alert/go-chart/util"
 )
 
 // BarChart is a chart that draws bars on a range.

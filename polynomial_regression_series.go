@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/beevee/go-chart/matrix"
-	util "github.com/beevee/go-chart/util"
+	"github.com/moira-alert/go-chart/matrix"
+	util "github.com/moira-alert/go-chart/util"
 )
 
 // Interface Assertions.

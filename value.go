@@ -1,6 +1,6 @@
 package chart
 
-import util "github.com/beevee/go-chart/util"
+import util "github.com/moira-alert/go-chart/util"
 
 // Value is a chart value.
 type Value struct {

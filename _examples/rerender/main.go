@@ -6,9 +6,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/beevee/go-chart/util"
+	"github.com/moira-alert/go-chart/util"
 
-	chart "github.com/beevee/go-chart"
+	chart "github.com/moira-alert/go-chart"
 )
 
 var lock sync.Mutex

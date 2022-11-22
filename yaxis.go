@@ -3,7 +3,7 @@ package chart
 import (
 	"math"
 
-	"github.com/beevee/go-chart/util"
+	"github.com/moira-alert/go-chart/util"
 )
 
 // YAxis is a veritcal rule of the range.
@@ -61,9 +61,9 @@ func (ya YAxis) GetTickStyle() Style {
 
 // GetTicks returns the ticks for a series.
 // The coalesce priority is:
-// 	- User Supplied Ticks (i.e. Ticks array on the axis itself).
-// 	- Range ticks (i.e. if the range provides ticks).
-//	- Generating continuous ticks based on minimum spacing and canvas width.
+//   - User Supplied Ticks (i.e. Ticks array on the axis itself).
+//   - Range ticks (i.e. if the range provides ticks).
+//   - Generating continuous ticks based on minimum spacing and canvas width.
 func (ya YAxis) GetTicks(r Renderer, ra Range, defaults Style, vf ValueFormatter) []Tick {
 	if len(ya.Ticks) > 0 {
 		return ya.Ticks

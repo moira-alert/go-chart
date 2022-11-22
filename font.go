@@ -4,7 +4,7 @@ import (
 	"sync"
 
 	"github.com/golang/freetype/truetype"
-	"github.com/beevee/go-chart/roboto"
+	"github.com/moira-alert/go-chart/roboto"
 )
 
 var (

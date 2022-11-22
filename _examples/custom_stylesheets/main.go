@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/beevee/go-chart"
+	"github.com/moira-alert/go-chart"
 	"log"
 	"net/http"
 )
@@ -45,9 +45,9 @@ func svgWithCustomInlineCSSNonce(res http.ResponseWriter, _ *http.Request) {
 func svgWithCustomExternalCSS(res http.ResponseWriter, _ *http.Request) {
 	// Add external CSS
 	res.Write([]byte(
-		`<?xml version="1.0" standalone="no"?>`+
-		`<?xml-stylesheet href="/main.css" type="text/css"?>`+
-		`<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">`))
+		`<?xml version="1.0" standalone="no"?>` +
+			`<?xml-stylesheet href="/main.css" type="text/css"?>` +
+			`<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">`))
 
 	res.Header().Set("Content-Type", chart.ContentTypeSVG)
 	err := pieChart().Render(chart.SVG, res)

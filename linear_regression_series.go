@@ -3,8 +3,8 @@ package chart
 import (
 	"fmt"
 
-	"github.com/beevee/go-chart/seq"
-	util "github.com/beevee/go-chart/util"
+	"github.com/moira-alert/go-chart/seq"
+	util "github.com/moira-alert/go-chart/util"
 )
 
 // Interface Assertions.

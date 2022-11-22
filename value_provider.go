@@ -1,6 +1,6 @@
 package chart
 
-import "github.com/beevee/go-chart/drawing"
+import "github.com/moira-alert/go-chart/drawing"
 
 // ValuesProvider is a type that produces values.
 type ValuesProvider interface {

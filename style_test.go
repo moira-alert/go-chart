@@ -5,7 +5,7 @@ import (
 
 	"github.com/blend/go-sdk/assert"
 	"github.com/golang/freetype/truetype"
-	"github.com/beevee/go-chart/drawing"
+	"github.com/moira-alert/go-chart/drawing"
 )
 
 func TestStyleIsZero(t *testing.T) {

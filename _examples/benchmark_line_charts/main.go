@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/beevee/go-chart"
+	"github.com/moira-alert/go-chart"
 )
 
 func random(min, max float64) float64 {
