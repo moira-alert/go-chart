@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	assert "github.com/blend/go-sdk/assert"
-	"github.com/beevee/go-chart/matrix"
+	"github.com/moira-alert/go-chart/matrix"
 )
 
 func TestPolynomialRegression(t *testing.T) {

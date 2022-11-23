@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/beevee/go-chart"
+	"github.com/moira-alert/go-chart"
 )
 
 func main() {

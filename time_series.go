@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	util "github.com/beevee/go-chart/util"
+	util "github.com/moira-alert/go-chart/util"
 )
 
 // Interface Assertions.

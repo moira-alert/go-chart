@@ -3,7 +3,7 @@ package chart
 import (
 	"strings"
 
-	util "github.com/beevee/go-chart/util"
+	util "github.com/moira-alert/go-chart/util"
 )
 
 // TextHorizontalAlign is an enum for the horizontal alignment options.

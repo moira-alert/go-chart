@@ -1,8 +1,8 @@
 package chart
 
 import (
-	"github.com/beevee/go-chart/drawing"
-	"github.com/beevee/go-chart/util"
+	"github.com/moira-alert/go-chart/drawing"
+	"github.com/moira-alert/go-chart/util"
 )
 
 // Legend returns a legend renderable function.

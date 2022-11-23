@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/beevee/go-chart"
-	"github.com/beevee/go-chart/drawing"
+	"github.com/moira-alert/go-chart"
+	"github.com/moira-alert/go-chart/drawing"
 )
 
 func drawChart(res http.ResponseWriter, req *http.Request) {

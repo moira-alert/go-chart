@@ -235,3 +235,7 @@ func (m mathUtil) RotateCoordinate(cx, cy, x, y int, thetaRadians float64) (rx, 
 	ry = int(rotatedY) + cy
 	return
 }
+
+func (m mathUtil) SqrFloat(x float64) float64 {
+	return x * x
+}

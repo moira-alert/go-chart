@@ -4,7 +4,7 @@ import (
 	"io"
 
 	"github.com/golang/freetype/truetype"
-	"github.com/beevee/go-chart/drawing"
+	"github.com/moira-alert/go-chart/drawing"
 )
 
 // Renderer represents the basic methods required to draw a chart.

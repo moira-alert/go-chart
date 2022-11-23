@@ -3,9 +3,9 @@ package chart
 import (
 	"errors"
 	"fmt"
-	"io"
 	"github.com/golang/freetype/truetype"
-	"github.com/beevee/go-chart/util"
+	"github.com/moira-alert/go-chart/util"
+	"io"
 )
 
 // DonutChart is a chart that draws sections of a circle based on percentages with an hole.
@@ -65,8 +65,6 @@ func (pc DonutChart) GetHeight() int {
 	return pc.Height
 }
 
-
-
 // Render renders the chart with the given renderer to the given io.Writer.
 func (pc DonutChart) Render(rp RendererProvider, w io.Writer) error {
 	if len(pc.Values) == 0 {
@@ -92,7 +90,6 @@ func (pc DonutChart) Render(rp RendererProvider, w io.Writer) error {
 
 	pc.drawBackground(r)
 	pc.drawCanvas(r, canvasBox)
-
 
 	finalValues, err := pc.finalizeValues(pc.Values)
 	if err != nil {
@@ -127,7 +124,7 @@ func (pc DonutChart) drawTitle(r Renderer) {
 func (pc DonutChart) drawSlices(r Renderer, canvasBox Box, values []Value) {
 	cx, cy := canvasBox.Center()
 	diameter := util.Math.MinInt(canvasBox.Width(), canvasBox.Height())
-	radius := float64(diameter >> 1) / 1.1
+	radius := float64(diameter>>1) / 1.1
 	labelRadius := (radius * 2.83) / 3.0
 
 	// draw the donut slices
@@ -154,11 +151,10 @@ func (pc DonutChart) drawSlices(r Renderer, canvasBox Box, values []Value) {
 		}
 	}
 
-
 	//making the donut hole
 	v := Value{Value: 100, Label: "center"}
 	styletemp := pc.SliceStyle.InheritFrom(Style{
-		StrokeColor: ColorWhite, StrokeWidth: 4.0, FillColor:   ColorWhite, FontColor:   ColorWhite, //Font:        pc.GetFont(),//FontSize:    pc.getScaledFontSize(),
+		StrokeColor: ColorWhite, StrokeWidth: 4.0, FillColor: ColorWhite, FontColor: ColorWhite, //Font:        pc.GetFont(),//FontSize:    pc.getScaledFontSize(),
 	})
 	v.Style.InheritFrom(styletemp).WriteToRenderer(r)
 	r.MoveTo(cx, cy)
@@ -166,7 +162,6 @@ func (pc DonutChart) drawSlices(r Renderer, canvasBox Box, values []Value) {
 	r.LineTo(cx, cy)
 	r.Close()
 	r.FillStroke()
-
 
 	// draw the labels
 	total = 0
@@ -186,7 +181,6 @@ func (pc DonutChart) drawSlices(r Renderer, canvasBox Box, values []Value) {
 		total = total + v.Value
 	}
 }
-
 
 func (pc DonutChart) finalizeValues(values []Value) ([]Value, error) {
 	finalValues := Values(values).Normalize()
