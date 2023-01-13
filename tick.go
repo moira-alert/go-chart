@@ -125,7 +125,7 @@ func GeneratePrettyContinuousTicks(r Renderer, ra Range, isVertical bool, style 
 
 	prettyStepsPriorityList := []float64{1, 5, 2, 2.5, 4, 3}
 
-	var (
+	const (
 		simplicityParam = 0.2
 		coverageParam   = 0.25
 		densityParam    = 0.5
