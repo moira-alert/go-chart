@@ -124,12 +124,13 @@ func GeneratePrettyContinuousTicks(r Renderer, ra Range, isVertical bool, style 
 	}
 
 	prettyStepsPriorityList := []float64{1, 5, 2, 2.5, 4, 3}
-	paramWeights := map[string]float64{
-		"simplicity": 0.2,
-		"coverage":   0.25,
-		"density":    0.5,
-		"legibility": 0.05,
-	}
+
+	const (
+		simplicityParam = 0.2
+		coverageParam   = 0.25
+		densityParam    = 0.5
+		legibilityParam = 0.05
+	)
 
 	rangeMin, rangeMax := ra.GetMin(), ra.GetMax()
 
@@ -165,10 +166,10 @@ OUTER:
 		for prettyStepIndex, prettyStep := range prettyStepsPriorityList {
 			simplicityMax := calculateSimplicityMax(float64(prettyStepIndex), prettyStepsCount, stepsToSkip)
 
-			if paramWeights["simplicity"]*simplicityMax+
-				paramWeights["coverage"]+
-				paramWeights["density"]+
-				paramWeights["legibility"] < bestScore {
+			if simplicityParam*simplicityMax+
+				coverageParam+
+				densityParam+
+				legibilityParam < bestScore {
 				break OUTER
 			}
 
@@ -176,10 +177,10 @@ OUTER:
 			for {
 				densityMax := calculateDensityMax(ticksCount, desiredTicksCount)
 
-				if paramWeights["simplicity"]*simplicityMax+
-					paramWeights["coverage"]+
-					paramWeights["density"]*densityMax+
-					paramWeights["legibility"] < bestScore {
+				if simplicityParam*simplicityMax+
+					coverageParam+
+					densityParam*densityMax+
+					legibilityParam < bestScore {
 					break
 				}
 
@@ -190,10 +191,10 @@ OUTER:
 					tickStep := stepsToSkip * prettyStep * math.Pow(10, stepSizeMultiplierLog)
 					coverageMax := calculateCoverageMax(rangeMin, rangeMax, tickStep*(ticksCount-1))
 
-					if paramWeights["simplicity"]*simplicityMax+
-						paramWeights["coverage"]*coverageMax+
-						paramWeights["density"]*densityMax+
-						paramWeights["legibility"] < bestScore {
+					if simplicityParam*simplicityMax+
+						coverageParam*coverageMax+
+						densityParam*densityMax+
+						legibilityParam < bestScore {
 						break
 					}
 
@@ -219,10 +220,10 @@ OUTER:
 							legibility = math.Inf(-1) // overlap is unacceptable
 						}
 
-						score := paramWeights["simplicity"]*simplicity +
-							paramWeights["coverage"]*coverage +
-							paramWeights["density"]*density +
-							paramWeights["legibility"]*legibility
+						score := simplicityParam*simplicity +
+							coverageParam*coverage +
+							densityParam*density +
+							legibilityParam*legibility
 
 						// original algorithm allows ticks outside value range, but it breaks rendering in this library
 						if score > bestScore && tickMin >= rangeMin && tickMax <= rangeMax {
