@@ -8,6 +8,8 @@ import (
 	"github.com/moira-alert/go-chart/util"
 )
 
+const prettyTicksTolerance = 1e-10
+
 // TicksProvider is a type that provides ticks.
 type TicksProvider interface {
 	GetTicks(r Renderer, defaults Style, vf ValueFormatter) []Tick
@@ -114,6 +116,17 @@ func GenerateContinuousTicks(r Renderer, ra Range, isVertical bool, style Style,
 	}
 
 	return ticks
+}
+
+// PrettyTicker is an interface that defines a method for checking whether pretty ticks should be enabled.
+type PrettyTicker interface {
+	GetEnablePrettyTicks() bool
+}
+
+// allowGeneratePrettyContiniousTicks is a method that determines whether the GeneratePrettyContiniousTicks 
+// function can be called, which does a lot of maths transformations that don't work on large floats.
+func allowGeneratePrettyContiniousTicks(ticker PrettyTicker, ra Range) bool {
+	return ticker.GetEnablePrettyTicks() && math.Abs(ra.GetMax()-ra.GetMin()) > prettyTicksTolerance
 }
 
 // GeneratePrettyContinuousTicks generates a set of ticks at visually pleasing intervals.
