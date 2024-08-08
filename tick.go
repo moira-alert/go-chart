@@ -118,11 +118,6 @@ func GenerateContinuousTicks(r Renderer, ra Range, isVertical bool, style Style,
 	return ticks
 }
 
-// PrettyTicker is an interface that defines a method for checking whether pretty ticks should be enabled.
-type PrettyTicker interface {
-	GetEnablePrettyTicks() bool
-}
-
 // allowGeneratePrettyContiniousTicks is a method that determines whether the GeneratePrettyContiniousTicks
 // function can be called, which does a lot of maths transformations that don't work on large floats.
 func allowGeneratePrettyContiniousTicks(enablePrettyTicks bool, ra Range) bool {
