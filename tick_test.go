@@ -39,9 +39,7 @@ func FuzzGeneratePrettyContinuousTicks(f *testing.F) {
 			Domain: domain,
 		}
 
-		xa := XAxis{
-			EnablePrettyTicks: true,
-		}
+		enablePrettyTicks := true
 
 		timer := time.NewTimer(generatePrettyTicksTimeout)
 		defer timer.Stop()
@@ -49,7 +47,7 @@ func FuzzGeneratePrettyContinuousTicks(f *testing.F) {
 		done := make(chan struct{})
 
 		go func() {
-			if allowGeneratePrettyContiniousTicks(xa, ra) {
+			if allowGeneratePrettyContiniousTicks(enablePrettyTicks, ra) {
 				GeneratePrettyContinuousTicks(r, ra, false, Style{}, vf)
 			}
 			close(done)
@@ -298,8 +296,8 @@ func TestAllowGeneratePrettyContiniousTicks(t *testing.T) {
 	assert := assert.New(t)
 
 	type args struct {
-		ticker PrettyTicker
-		ra     Range
+		enablePrettyTicks bool
+		ra                Range
 	}
 
 	testcases := []struct {
@@ -310,9 +308,7 @@ func TestAllowGeneratePrettyContiniousTicks(t *testing.T) {
 		{
 			name: "Allow generate pretty continious ticks with correct parameters",
 			args: args{
-				ticker: XAxis{
-					EnablePrettyTicks: true,
-				},
+				enablePrettyTicks: true,
 				ra: &ContinuousRange{
 					Min: 0,
 					Max: 100,
@@ -323,9 +319,7 @@ func TestAllowGeneratePrettyContiniousTicks(t *testing.T) {
 		{
 			name: "Don't allow generate pretty continious ticks with disabled EnablePrettyTicks",
 			args: args{
-				ticker: XAxis{
-					EnablePrettyTicks: false,
-				},
+				enablePrettyTicks: false,
 				ra: &ContinuousRange{
 					Min: 0,
 					Max: 100,
@@ -336,9 +330,7 @@ func TestAllowGeneratePrettyContiniousTicks(t *testing.T) {
 		{
 			name: "Don't allow generate pretty continious ticks with too small a difference between max and min",
 			args: args{
-				ticker: XAxis{
-					EnablePrettyTicks: true,
-				},
+				enablePrettyTicks: true,
 				ra: &ContinuousRange{
 					Min: 0,
 					Max: 1e-12,
@@ -354,7 +346,7 @@ func TestAllowGeneratePrettyContiniousTicks(t *testing.T) {
 		t.Run(testcase.name, func(t *testing.T) {
 			t.Parallel()
 
-			actual := allowGeneratePrettyContiniousTicks(testcase.args.ticker, testcase.args.ra)
+			actual := allowGeneratePrettyContiniousTicks(testcase.args.enablePrettyTicks, testcase.args.ra)
 			assert.Equal(testcase.expected, actual)
 		})
 	}

@@ -46,11 +46,6 @@ func (ya YAxis) GetStyle() Style {
 	return ya.Style
 }
 
-// GetEnablePrettyTicks returns the EnabledPrettyTicks.
-func (xa YAxis) GetEnablePrettyTicks() bool {
-	return xa.EnablePrettyTicks
-}
-
 // GetValueFormatter returns the value formatter for the axis.
 func (ya YAxis) GetValueFormatter() ValueFormatter {
 	if ya.ValueFormatter != nil {
@@ -79,7 +74,7 @@ func (ya YAxis) GetTicks(r Renderer, ra Range, defaults Style, vf ValueFormatter
 	}
 
 	tickStyle := ya.Style.InheritFrom(defaults)
-	if allowGeneratePrettyContiniousTicks(ya, ra) {
+	if allowGeneratePrettyContiniousTicks(ya.EnablePrettyTicks, ra) {
 		return GeneratePrettyContinuousTicks(r, ra, true, tickStyle, vf)
 	}
 

@@ -123,10 +123,10 @@ type PrettyTicker interface {
 	GetEnablePrettyTicks() bool
 }
 
-// allowGeneratePrettyContiniousTicks is a method that determines whether the GeneratePrettyContiniousTicks 
+// allowGeneratePrettyContiniousTicks is a method that determines whether the GeneratePrettyContiniousTicks
 // function can be called, which does a lot of maths transformations that don't work on large floats.
-func allowGeneratePrettyContiniousTicks(ticker PrettyTicker, ra Range) bool {
-	return ticker.GetEnablePrettyTicks() && math.Abs(ra.GetMax()-ra.GetMin()) > prettyTicksTolerance
+func allowGeneratePrettyContiniousTicks(enablePrettyTicks bool, ra Range) bool {
+	return enablePrettyTicks && math.Abs(ra.GetMax()-ra.GetMin()) > prettyTicksTolerance
 }
 
 // GeneratePrettyContinuousTicks generates a set of ticks at visually pleasing intervals.
