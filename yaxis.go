@@ -68,13 +68,16 @@ func (ya YAxis) GetTicks(r Renderer, ra Range, defaults Style, vf ValueFormatter
 	if len(ya.Ticks) > 0 {
 		return ya.Ticks
 	}
+
 	if tp, isTickProvider := ra.(TicksProvider); isTickProvider {
 		return tp.GetTicks(r, defaults, vf)
 	}
+
 	tickStyle := ya.Style.InheritFrom(defaults)
-	if ya.EnablePrettyTicks {
+	if allowGeneratePrettyContiniousTicks(ya.EnablePrettyTicks, ra) {
 		return GeneratePrettyContinuousTicks(r, ra, true, tickStyle, vf)
 	}
+
 	return GenerateContinuousTicks(r, ra, true, tickStyle, vf)
 }
 
