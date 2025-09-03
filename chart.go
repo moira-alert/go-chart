@@ -167,9 +167,9 @@ func (c Chart) validateSeries() error {
 }
 
 func (c Chart) getRanges() (xrange, yrange, yrangeAlt Range) {
-	var minx, maxx float64 = math.MaxFloat64, -math.MaxFloat64
-	var miny, maxy float64 = math.MaxFloat64, -math.MaxFloat64
-	var minya, maxya float64 = math.MaxFloat64, -math.MaxFloat64
+	var minx, maxx = math.MaxFloat64, -math.MaxFloat64
+	var miny, maxy = math.MaxFloat64, -math.MaxFloat64
+	var minya, maxya = math.MaxFloat64, -math.MaxFloat64
 
 	seriesMappedToSecondaryAxis := false
 
@@ -298,6 +298,9 @@ func (c Chart) getRanges() (xrange, yrange, yrangeAlt Range) {
 	return
 }
 
+// ErrOnePoint err for zero x-range delta.
+var ErrOnePoint = errors.New("zero x-range delta; there needs to be at least (2) values")
+
 func (c Chart) checkRanges(xr, yr, yra Range) error {
 	xDelta := xr.GetDelta()
 	if math.IsInf(xDelta, 0) {
@@ -307,7 +310,7 @@ func (c Chart) checkRanges(xr, yr, yra Range) error {
 		return errors.New("nan x-range delta")
 	}
 	if xDelta == 0 {
-		return errors.New("zero x-range delta; there needs to be at least (2) values")
+		return ErrOnePoint
 	}
 
 	yDelta := yr.GetDelta()

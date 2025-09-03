@@ -1,6 +1,6 @@
 module github.com/moira-alert/go-chart
 
-go 1.20
+go 1.24
 
 require (
 	github.com/blend/go-sdk v1.20220411.3
