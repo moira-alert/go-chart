@@ -68,7 +68,7 @@ func (pc PieChart) GetWidth() int {
 // GetHeight returns the chart height or the default value.
 func (pc PieChart) GetHeight() int {
 	if pc.Height == 0 {
-		return DefaultChartWidth
+		return DefaultChartHeight
 	}
 	return pc.Height
 }
@@ -177,7 +177,7 @@ func (pc PieChart) drawSlices(r Renderer, canvasBox Box, values []Value) {
 				lx = 0
 			}
 			if ly < 0 {
-				lx = 0
+				ly = 0
 			}
 
 			r.Text(v.Label, lx, ly)

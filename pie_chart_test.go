@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"testing"
 
-	assert "github.com/blend/go-sdk/assert"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestPieChart(t *testing.T) {
@@ -66,4 +66,27 @@ func TestPieChartAllZeroValues(t *testing.T) {
 	b := bytes.NewBuffer([]byte{})
 	err := pie.Render(PNG, b)
 	assert.NotNil(err)
+}
+
+func TestPieChartGetHeight(t *testing.T) {
+	assert := assert.New(t)
+
+	pie := PieChart{}
+	assert.Equal(DefaultChartHeight, pie.GetHeight())
+
+	pie2 := PieChart{Height: 600}
+	assert.Equal(600, pie2.GetHeight())
+
+	pie3 := PieChart{Height: 0}
+	assert.Equal(DefaultChartHeight, pie3.GetHeight())
+}
+
+func TestPieChartGetWidth(t *testing.T) {
+	assert := assert.New(t)
+
+	pie := PieChart{}
+	assert.Equal(DefaultChartWidth, pie.GetWidth())
+
+	pie2 := PieChart{Width: 800}
+	assert.Equal(800, pie2.GetWidth())
 }
