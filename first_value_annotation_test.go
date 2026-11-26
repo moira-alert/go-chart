@@ -3,7 +3,7 @@ package chart
 import (
 	"testing"
 
-	"github.com/blend/go-sdk/assert"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestFirstValueAnnotation(t *testing.T) {
@@ -19,4 +19,25 @@ func TestFirstValueAnnotation(t *testing.T) {
 	fvaa := fva.Annotations[0]
 	assert.Equal(1, fvaa.XValue)
 	assert.Equal(5, fvaa.YValue)
+}
+
+func TestFirstValueAnnotationEmptySeries(t *testing.T) {
+	assert := assert.New(t)
+
+	emptySeries := ContinuousSeries{
+		XValues: []float64{},
+		YValues: []float64{},
+	}
+
+	fva := FirstValueAnnotation(emptySeries)
+	assert.Empty(fva.Annotations)
+}
+
+func TestFirstValueAnnotationNilLikeSeries(t *testing.T) {
+	assert := assert.New(t)
+
+	series := ContinuousSeries{}
+
+	fva := FirstValueAnnotation(series)
+	assert.Empty(fva.Annotations)
 }

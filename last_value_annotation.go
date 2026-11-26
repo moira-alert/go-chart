@@ -14,6 +14,11 @@ func LastValueAnnotation(innerSeries ValuesProvider, vfs ...ValueFormatter) Anno
 	}
 
 	var lastValue Value2
+	if innerSeries.Len() == 0 {
+		return AnnotationSeries{
+			Annotations: []Value2{},
+		}
+	}
 	if typed, isTyped := innerSeries.(LastValuesProvider); isTyped {
 		lastValue.XValue, lastValue.YValue = typed.GetLastValues()
 		lastValue.Label = vf(lastValue.YValue)

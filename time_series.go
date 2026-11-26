@@ -43,6 +43,9 @@ func (ts TimeSeries) Len() int {
 
 // GetValues gets x, y values at a given index.
 func (ts TimeSeries) GetValues(index int) (x, y float64) {
+	if index < 0 || index >= len(ts.XValues) {
+		return 0, 0
+	}
 	x = util.Time.ToFloat64(ts.XValues[index])
 	y = ts.YValues[index]
 	return
@@ -50,6 +53,9 @@ func (ts TimeSeries) GetValues(index int) (x, y float64) {
 
 // GetFirstValues gets the first values.
 func (ts TimeSeries) GetFirstValues() (x, y float64) {
+	if len(ts.XValues) == 0 || len(ts.YValues) == 0 {
+		return 0, 0
+	}
 	x = util.Time.ToFloat64(ts.XValues[0])
 	y = ts.YValues[0]
 	return
@@ -57,6 +63,9 @@ func (ts TimeSeries) GetFirstValues() (x, y float64) {
 
 // GetLastValues gets the last values.
 func (ts TimeSeries) GetLastValues() (x, y float64) {
+	if len(ts.XValues) == 0 || len(ts.YValues) == 0 {
+		return 0, 0
+	}
 	x = util.Time.ToFloat64(ts.XValues[len(ts.XValues)-1])
 	y = ts.YValues[len(ts.YValues)-1]
 	return

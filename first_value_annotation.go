@@ -14,6 +14,11 @@ func FirstValueAnnotation(innerSeries ValuesProvider, vfs ...ValueFormatter) Ann
 	}
 
 	var firstValue Value2
+	if innerSeries.Len() == 0 {
+		return AnnotationSeries{
+			Annotations: []Value2{},
+		}
+	}
 	if typed, isTyped := innerSeries.(FirstValuesProvider); isTyped {
 		firstValue.XValue, firstValue.YValue = typed.GetFirstValues()
 		firstValue.Label = vf(firstValue.YValue)

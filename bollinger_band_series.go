@@ -2,6 +2,7 @@ package chart
 
 import (
 	"fmt"
+	"sync"
 
 	"github.com/moira-alert/go-chart/seq"
 )
@@ -23,6 +24,7 @@ type BollingerBandsSeries struct {
 	InnerSeries ValuesProvider
 
 	valueBuffer *seq.Buffer
+	bufferMu    sync.Mutex
 }
 
 // GetName returns the name of the time series.
@@ -71,6 +73,7 @@ func (bbs *BollingerBandsSeries) GetBoundedValues(index int) (x, y1, y2 float64)
 	if bbs.InnerSeries == nil {
 		return
 	}
+	bbs.bufferMu.Lock()
 	if bbs.valueBuffer == nil || index == 0 {
 		bbs.valueBuffer = seq.NewBufferWithCapacity(bbs.GetPeriod())
 	}
@@ -79,6 +82,7 @@ func (bbs *BollingerBandsSeries) GetBoundedValues(index int) (x, y1, y2 float64)
 	}
 	px, py := bbs.InnerSeries.GetValues(index)
 	bbs.valueBuffer.Enqueue(py)
+	bbs.bufferMu.Unlock()
 	x = px
 
 	ay := seq.New(bbs.valueBuffer).Average()

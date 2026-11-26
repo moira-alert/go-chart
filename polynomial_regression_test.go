@@ -3,8 +3,8 @@ package chart
 import (
 	"testing"
 
-	assert "github.com/blend/go-sdk/assert"
 	"github.com/moira-alert/go-chart/matrix"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestPolynomialRegression(t *testing.T) {
@@ -32,4 +32,44 @@ func TestPolynomialRegression(t *testing.T) {
 		_, y := poly.GetValues(i)
 		assert.InDelta(float64(i*i), y, matrix.DefaultEpsilon)
 	}
+}
+
+func TestPolynomialRegressionNilInnerSeries(t *testing.T) {
+	assert := assert.New(t)
+
+	poly := &PolynomialRegressionSeries{
+		Degree: 2,
+	}
+
+	_, y := poly.GetValues(0)
+	assert.Equal(0.0, y)
+
+	x, y := poly.GetFirstValues()
+	assert.Equal(0.0, x)
+	assert.Equal(0.0, y)
+
+	x, y = poly.GetLastValues()
+	assert.Equal(0.0, x)
+	assert.Equal(0.0, y)
+}
+
+func TestPolynomialRegressionEmptyInnerSeries(t *testing.T) {
+	assert := assert.New(t)
+
+	emptySeries := ContinuousSeries{
+		XValues: []float64{},
+		YValues: []float64{},
+	}
+
+	poly := &PolynomialRegressionSeries{
+		InnerSeries: emptySeries,
+		Degree:      2,
+	}
+
+	_, y := poly.GetValues(0)
+	assert.Equal(0.0, y)
+
+	x, y := poly.GetFirstValues()
+	assert.Equal(0.0, x)
+	assert.Equal(0.0, y)
 }

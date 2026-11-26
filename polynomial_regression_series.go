@@ -96,7 +96,7 @@ func (prs *PolynomialRegressionSeries) GetValues(index int) (x, y float64) {
 	if prs.coeffs == nil {
 		coeffs, err := prs.computeCoefficients()
 		if err != nil {
-			panic(err)
+			return 0, 0
 		}
 		prs.coeffs = coeffs
 	}
@@ -116,7 +116,7 @@ func (prs *PolynomialRegressionSeries) GetFirstValues() (x, y float64) {
 	if prs.coeffs == nil {
 		coeffs, err := prs.computeCoefficients()
 		if err != nil {
-			panic(err)
+			return 0, 0
 		}
 		prs.coeffs = coeffs
 	}
@@ -133,7 +133,7 @@ func (prs *PolynomialRegressionSeries) GetLastValues() (x, y float64) {
 	if prs.coeffs == nil {
 		coeffs, err := prs.computeCoefficients()
 		if err != nil {
-			panic(err)
+			return 0, 0
 		}
 		prs.coeffs = coeffs
 	}

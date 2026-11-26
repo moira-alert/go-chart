@@ -60,7 +60,7 @@ func (pc DonutChart) GetWidth() int {
 // GetHeight returns the chart height or the default value.
 func (pc DonutChart) GetHeight() int {
 	if pc.Height == 0 {
-		return DefaultChartWidth
+		return DefaultChartHeight
 	}
 	return pc.Height
 }

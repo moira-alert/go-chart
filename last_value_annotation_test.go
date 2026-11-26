@@ -3,7 +3,7 @@ package chart
 import (
 	"testing"
 
-	"github.com/blend/go-sdk/assert"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestLastValueAnnotation(t *testing.T) {
@@ -19,4 +19,25 @@ func TestLastValueAnnotation(t *testing.T) {
 	lvaa := lva.Annotations[0]
 	assert.Equal(5, lvaa.XValue)
 	assert.Equal(1, lvaa.YValue)
+}
+
+func TestLastValueAnnotationEmptySeries(t *testing.T) {
+	assert := assert.New(t)
+
+	emptySeries := ContinuousSeries{
+		XValues: []float64{},
+		YValues: []float64{},
+	}
+
+	lva := LastValueAnnotation(emptySeries)
+	assert.Empty(lva.Annotations)
+}
+
+func TestLastValueAnnotationNilLikeSeries(t *testing.T) {
+	assert := assert.New(t)
+
+	series := ContinuousSeries{}
+
+	lva := LastValueAnnotation(series)
+	assert.Empty(lva.Annotations)
 }
